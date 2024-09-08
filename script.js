@@ -14,9 +14,17 @@ const winPattern = [
   [2, 4, 6],
 ];
 
-function resultButton(pos1) {
-  button.innerText = `Winner is " ${pos1} "`;
-  button.style.backgroundColor = "green";
+function resultButton(string, color) {
+  button.innerText = string;
+  button.style.backgroundColor = color;
+}
+
+function drawSituation(){
+  let emptyBoxes = [...boxces].filter((box) => box.innerText === "")
+  if(emptyBoxes.length === 0){
+    return true
+  }
+  return false;
 }
 
 const disableAllBox = () => {
@@ -33,12 +41,14 @@ const checkWinner = () => {
 
     if (pos1 != "" && pos2 != "" && pos3 != "") {
       if (pos1 === pos2 && pos2 === pos3) {
-        resultButton(pos1);
+        resultButton(`Winner is " ${pos1} "`, "green");
         disableAllBox();
         setTimeout(() => {
           location.reload();
-        }, 4000);
+        }, 2000);
         return true; // A winner was found
+      } else if (drawSituation()) {
+        resultButton(`Game Draw`, "#1b263b");
       }
     }
   }
@@ -47,7 +57,7 @@ const checkWinner = () => {
 
 const computerMove = () => {
   // Get all empty boxes
-  const emptyBoxes = [...boxces].filter(box => box.innerText === "");
+  const emptyBoxes = [...boxces].filter((box) => box.innerText === "");
   if (emptyBoxes.length > 0) {
     // Choose a random empty box for the computer's move
     const randomBox = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];

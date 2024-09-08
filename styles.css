@@ -1,64 +1,89 @@
-html {
-  height: 100%;
-  margin: 0;
+body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  background-color: #606c38;
-  color: #ffffff;
-}
-.title {
-  font-size: 3em;
-  margin-bottom: 120px;
   text-align: center;
+  background-color: #606c38;
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
-  gap: 10px;
-  margin-left: 30%;
+body h1{
+  font-family: sans-serif;
+  font-size: 36px;
+  color: #fefae0;
+  margin-top: 50px;
 }
-.box {
-  background-color: #283618;
-  border: 3px solid #ffffff;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 60px;
-  cursor: pointer;
-}
-.button-container {
+.top-right button {
   margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  margin-left: 10%;
-}
-button {
-  padding: 10px 20px;
-  font-size: 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #242038;
-  color: #ffffff;
-}
-
-footer {
-  margin-top: 80px;
-  font-size: 1em;
-}
-
-.top-right {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-#show-points-btn {
   padding: 5px 10px;
-  font-size: 14px;
-  cursor: pointer;
+  font-size: 16px;
+  background-color: #023047;
+  color: #fefae0;
+  border-radius: 6px;
+  border: 2px solid #fefae0;
+}
+.grid{
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-around;
+  margin-left: 40.5%;
+  margin-top: 50px;
+}
+.box{
+  height: 90px;
+  width: 90px;
+  border-radius: 5px;
+  background-color: #283618;
+  color: #fefae0;
+  font-size: 55px;
+  border: 2px solid #fefae0;
+  font-family: serif;
+}
+.button-container{
+  margin-top: 30px;
+}
+.button-container button{
+  font-size: 23px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fcfaf6;
+  background-color: #450920;
+  border: 2px solid #da627d;
+}
+footer{
+  font-size: 20px;
+  font-family: Monospace;
+  margin-top: 90px;
+}
+
+@media (max-width: 480px){
+  body h1 {
+    color: #fcfaf6;
+  }
+  .grid{
+    height: 250px;
+    width: 246px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-around;
+    margin-left: 17.5%;
+    margin-top: 50px;
+  }
+  .box{
+    height: 70px;
+    width: 70px;
+    border-radius: 5px;
+    background-color: #283618;
+    color: #fefae0;
+    font-size: 40px;
+    border: 2px solid #fefae0;
+    font-family: serif;
+  }
+  footer{
+    font-size: 18px;
+    font-family: Monospace;
+    margin-top: 200px;
+  }
 }
