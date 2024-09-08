@@ -1,0 +1,61 @@
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #606c38;
+  color: #ffffff;
+}
+.title {
+  font-size: 3em;
+  margin-bottom: 120px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+}
+.box {
+  background-color: #283618;
+  border: 3px solid #ffffff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  cursor: pointer;
+}
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+button {
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #242038;
+  color: #ffffff;
+}
+
+footer {
+  margin-top: 80px;
+  font-size: 1em;
+}
+
+.top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#show-points-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
