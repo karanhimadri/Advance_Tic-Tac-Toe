@@ -11,12 +11,14 @@ html {
 .title {
   font-size: 3em;
   margin-bottom: 120px;
+  text-align: center;
 }
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
   gap: 10px;
+  margin-left: 30%;
 }
 .box {
   background-color: #283618;
@@ -32,6 +34,7 @@ html {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  margin-left: 10%;
 }
 button {
   padding: 10px 20px;
