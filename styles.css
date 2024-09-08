@@ -62,18 +62,19 @@ footer{
     color: #fcfaf6;
   }
   .grid{
-    height: 250px;
-    width: 246px;
+    height: 330px;
+    width: 330px;
     display: flex;
     flex-wrap: wrap;
     text-align: center;
     justify-content: space-around;
-    margin-left: 17.5%;
+    margin-left: 8.5%;
     margin-top: 50px;
   }
   .box{
-    height: 70px;
-    width: 70px;
+    height: 100px;
+    width: 100px;
+    padding: auto;
     border-radius: 5px;
     background-color: #283618;
     color: #fefae0;
@@ -84,6 +85,6 @@ footer{
   footer{
     font-size: 18px;
     font-family: Monospace;
-    margin-top: 200px;
+    margin-top: 60px;
   }
 }
