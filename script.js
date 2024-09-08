@@ -1,7 +1,8 @@
 const boxces = document.querySelectorAll(".box");
 const button = document.getElementById("btn");
-const timerButton = document.getElementById("timerButton");
+const Point = document.getElementById("point");
 let isPress = true; // true for human (X), false for computer (O)
+let point = 0;
 
 const winPattern = [
   [0, 1, 2],
@@ -19,10 +20,14 @@ function resultButton(string, color) {
   button.style.backgroundColor = color;
 }
 
-function drawSituation(){
-  let emptyBoxes = [...boxces].filter((box) => box.innerText === "")
-  if(emptyBoxes.length === 0){
-    return true
+function updateUserPoint(point){
+  Point.innerText = point;
+}
+
+function drawSituation() {
+  let emptyBoxes = [...boxces].filter((box) => box.innerText === "");
+  if (emptyBoxes.length === 0) {
+    return true;
   }
   return false;
 }
@@ -42,6 +47,8 @@ const checkWinner = () => {
     if (pos1 != "" && pos2 != "" && pos3 != "") {
       if (pos1 === pos2 && pos2 === pos3) {
         resultButton(`Winner is " ${pos1} "`, "green");
+        point = point + 10;
+        updateUserPoint(point);
         disableAllBox();
         setTimeout(() => {
           location.reload();
@@ -49,6 +56,9 @@ const checkWinner = () => {
         return true; // A winner was found
       } else if (drawSituation()) {
         resultButton(`Game Draw`, "#1b263b");
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       }
     }
   }

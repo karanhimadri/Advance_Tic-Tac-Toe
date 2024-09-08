@@ -68,7 +68,7 @@ footer{
     flex-wrap: wrap;
     text-align: center;
     justify-content: space-around;
-    margin-left: 8.5%;
+    margin-left: 7.5%;
     margin-top: 50px;
   }
   .box{
@@ -78,13 +78,13 @@ footer{
     border-radius: 5px;
     background-color: #283618;
     color: #fefae0;
-    font-size: 40px;
+    font-size: 70px;
     border: 2px solid #fefae0;
     font-family: serif;
   }
   footer{
     font-size: 18px;
     font-family: Monospace;
-    margin-top: 60px;
+    margin-top: 30px;
   }
 }
