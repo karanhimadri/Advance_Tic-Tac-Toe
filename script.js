@@ -1,7 +1,7 @@
 const boxces = document.querySelectorAll(".box");
 const button = document.getElementById("btn");
 const Point = document.getElementById("point");
-let isPress = true; // true for human (X), false for computer (O)
+let isPress = true; // true for human (X), false for computer (0)
 let point = 0;
 
 const winPattern = [
@@ -15,13 +15,15 @@ const winPattern = [
   [2, 4, 6],
 ];
 
-function resultButton(string, color) {
-  button.innerText = string;
+function resultButton(message, color) {
+  button.innerText = message;
   button.style.backgroundColor = color;
 }
 
-function updateUserPoint(point){
-  Point.innerText = point;
+function updateUserPoint(point, winner) {
+  if (winner === "X") {
+    Point.innerText = point;
+  }
 }
 
 function drawSituation() {
@@ -48,7 +50,7 @@ const checkWinner = () => {
       if (pos1 === pos2 && pos2 === pos3) {
         resultButton(`Winner is " ${pos1} "`, "green");
         point = point + 10;
-        updateUserPoint(point);
+        updateUserPoint(point, pos1);
         disableAllBox();
         setTimeout(() => {
           location.reload();
