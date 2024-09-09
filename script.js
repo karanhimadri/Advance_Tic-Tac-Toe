@@ -20,8 +20,22 @@ function resultButton(message, color) {
   button.style.backgroundColor = color;
 }
 
-function updateUserPoint(point, winner) {
+function playAgain(){
+  boxces.forEach((box) => {
+    box.innerText = "";
+    box.style.pointerEvents = "auto";
+  })
+  isPress = true;
+  resultButton("Play Again", "#1b263b")
+}
+
+function updateUserPoint(winner) {
   if (winner === "X") {
+    point = point + 10;
+    Point.innerText = point;
+  }
+  else{
+    point = point - 10;
     Point.innerText = point;
   }
 }
@@ -49,18 +63,17 @@ const checkWinner = () => {
     if (pos1 != "" && pos2 != "" && pos3 != "") {
       if (pos1 === pos2 && pos2 === pos3) {
         resultButton(`Winner is " ${pos1} "`, "green");
-        point = point + 10;
-        updateUserPoint(point, pos1);
+        updateUserPoint(pos1);
         disableAllBox();
         setTimeout(() => {
-          location.reload();
-        }, 2000);
+          playAgain();
+        }, 2500);
         return true; // A winner was found
       } else if (drawSituation()) {
         resultButton(`Game Draw`, "#1b263b");
         setTimeout(() => {
-          location.reload();
-        }, 2000);
+          playAgain()
+        }, 2500);
       }
     }
   }
