@@ -20,21 +20,20 @@ function resultButton(message, color) {
   button.style.backgroundColor = color;
 }
 
-function playAgain(){
+function playAgain() {
   boxces.forEach((box) => {
     box.innerText = "";
     box.style.pointerEvents = "auto";
-  })
+  });
   isPress = true;
-  resultButton("Play Again", "#1b263b")
+  resultButton("Play Again", "#1b263b");
 }
 
 function updateUserPoint(winner) {
   if (winner === "X") {
     point = point + 10;
     Point.innerText = point;
-  }
-  else{
+  } else {
     point = point - 10;
     Point.innerText = point;
   }
@@ -60,7 +59,7 @@ const checkWinner = () => {
     let pos2 = boxces[pattern[1]].innerText;
     let pos3 = boxces[pattern[2]].innerText;
 
-    if (pos1 != "" && pos2 != "" && pos3 != "") {
+    if (pos1 !== "" && pos2 !== "" && pos3 !== "") {
       if (pos1 === pos2 && pos2 === pos3) {
         resultButton(`Winner is " ${pos1} "`, "green");
         updateUserPoint(pos1);
@@ -69,29 +68,78 @@ const checkWinner = () => {
           playAgain();
         }, 2500);
         return true; // A winner was found
-      } else if (drawSituation()) {
-        resultButton(`Game Draw`, "#1b263b");
-        setTimeout(() => {
-          playAgain()
-        }, 2500);
       }
     }
+  }
+  if (drawSituation()) {
+    resultButton(`Game Draw`, "#1b263b");
+    setTimeout(() => {
+      playAgain();
+    }, 2500);
   }
   return false; // No winner found
 };
 
-const computerMove = () => {
-  // Get all empty boxes
+function findingEmptyBox() {
   const emptyBoxes = [...boxces].filter((box) => box.innerText === "");
+  const randomBox = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
+  return [emptyBoxes, randomBox];
+}
+
+const computerMove = () => {
+  // Get all empty boxes and a random empty box
+  const [emptyBoxes, randomBox] = findingEmptyBox();
   if (emptyBoxes.length > 0) {
-    // Choose a random empty box for the computer's move
-    const randomBox = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
-    randomBox.innerText = "O";
-    randomBox.style.pointerEvents = "none"; // Disable the box after click
-    return checkWinner(); // Check if the computer has won
+    makingGameDecisionAI(randomBox, emptyBoxes);
+    return checkWinner(); // Check if the AI has won after its move
   }
   return false;
 };
+
+const patternForAI = [
+  [0, 1, 2],
+  [2, 1, 0],
+  [3, 4, 5],
+  [5, 4, 3],
+  [6, 7, 8],
+  [8, 7, 6],
+  [0, 3, 6],
+  [6, 3, 0],
+  [1, 4, 7],
+  [7, 4, 1],
+  [2, 5, 8],
+  [8, 5, 2],
+  [0, 4, 8],
+  [8, 4, 0],
+  [2, 4, 6],
+  [6, 4, 2],
+];
+
+function makingGameDecisionAI(randomBox, emptyBoxes) {
+  // Check if AI can win or block player from winning
+  for (let pattern of patternForAI) {
+    let value1 = boxces[pattern[0]];
+    let value2 = boxces[pattern[1]];
+    let value3 = pattern[2];
+
+    if (value1.innerText !== "" && value2.innerText !== "") {
+      if (value1.innerText === value2.innerText) {
+        // AI completes the line if possible
+        if (boxces[value3].innerText === "") {
+          boxces[value3].innerText = "O";
+          boxces[value3].style.pointerEvents = "none";
+          return; // Exit once AI makes its move
+        }
+      }
+    }
+  }
+
+  // If no winning move, pick a random box
+  if (emptyBoxes.length > 0) {
+    randomBox.innerText = "O";
+    randomBox.style.pointerEvents = "none";
+  }
+}
 
 boxces.forEach((box) => {
   box.addEventListener("click", () => {
