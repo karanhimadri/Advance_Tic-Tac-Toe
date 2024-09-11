@@ -34,7 +34,9 @@ function updateUserPoint(winner) {
     point = point + 10;
     Point.innerText = point;
   } else {
-    point = point - 10;
+    if (point > 0) {
+      point = point - 10;
+    }
     Point.innerText = point;
   }
 }
@@ -118,16 +120,23 @@ const patternForAI = [
 function makingGameDecisionAI(randomBox, emptyBoxes) {
   // Check if AI can win or block player from winning
   for (let pattern of patternForAI) {
-    let value1 = boxces[pattern[0]];
-    let value2 = boxces[pattern[1]];
+    let value1 = pattern[0]
+    let value2 = pattern[1]
     let value3 = pattern[2];
 
-    if (value1.innerText !== "" && value2.innerText !== "") {
-      if (value1.innerText === value2.innerText) {
+    if ((boxces[value1].innerText !== "" && boxces[value2].innerText !== "") || (boxces[value1].innerText !== "" && boxces[value3].innerText !== "") ) {
+      if (boxces[value1].innerText === boxces[value2].innerText) {
         // AI completes the line if possible
         if (boxces[value3].innerText === "") {
           boxces[value3].innerText = "O";
           boxces[value3].style.pointerEvents = "none";
+          return; // Exit once AI makes its move
+        }
+      }
+      if(boxces[value1].innerText === boxces[value3].innerText){
+        if (boxces[value2].innerText === "") {
+          boxces[value2].innerText = "O";
+          boxces[value2].style.pointerEvents = "none";
           return; // Exit once AI makes its move
         }
       }
@@ -136,17 +145,23 @@ function makingGameDecisionAI(randomBox, emptyBoxes) {
 
   // If no winning move, pick a random box
   if (emptyBoxes.length > 0) {
+    console.log("OK");
+    
     randomBox.innerText = "O";
     randomBox.style.pointerEvents = "none";
   }
 }
 
+function humanMove(box) {
+  box.innerText = "X";
+  isPress = false;
+  box.style.pointerEvents = "none";
+}
+
 boxces.forEach((box) => {
   box.addEventListener("click", () => {
     if (isPress) {
-      box.innerText = "X";
-      isPress = false;
-      box.style.pointerEvents = "none"; // Disable the box after click
+      humanMove(box)
       if (!checkWinner()) {
         // After human move, let the computer play
         setTimeout(() => {
