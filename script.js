@@ -128,14 +128,17 @@ function makingGameDecisionAI(randomBox, emptyBoxes) {
       if (boxces[value1].innerText === boxces[value2].innerText) {
         // AI completes the line if possible
         if (boxces[value3].innerText === "") {
-          boxces[value3].innerText = "O";
+          boxces[value3].innerText = "〇";
+          boxces[value3].style.color = "#ffc200";
+          //boxces[value3].style.pointerEvents = "none";
           boxces[value3].style.pointerEvents = "none";
           return; // Exit once AI makes its move
         }
       }
       if(boxces[value1].innerText === boxces[value3].innerText){
         if (boxces[value2].innerText === "") {
-          boxces[value2].innerText = "O";
+          boxces[value2].innerText = "〇";
+          boxces[value2].style.color = "#ffc200";
           boxces[value2].style.pointerEvents = "none";
           return; // Exit once AI makes its move
         }
@@ -145,15 +148,15 @@ function makingGameDecisionAI(randomBox, emptyBoxes) {
 
   // If no winning move, pick a random box
   if (emptyBoxes.length > 0) {
-    console.log("OK");
-    
-    randomBox.innerText = "O";
+    randomBox.innerText = "〇";
+    randomBox.style.color = "#ffc200";
     randomBox.style.pointerEvents = "none";
   }
 }
 
 function humanMove(box) {
-  box.innerText = "X";
+  box.innerText = "✖";
+  box.style.color = "#d72878";
   isPress = false;
   box.style.pointerEvents = "none";
 }

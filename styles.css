@@ -3,7 +3,7 @@ body{
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  background-color: #606c38;
+  background-color: #4a7aff;
 }
 body h1{
   font-family: sans-serif;
@@ -34,10 +34,11 @@ body h1{
   height: 90px;
   width: 90px;
   border-radius: 5px;
-  background-color: #283618;
+  background-color: #e9edf5;
   color: #fefae0;
   font-size: 55px;
-  border: 2px solid #fefae0;
+  font-weight: 800;
+  border: 2px solid #050857;
   font-family: serif;
 }
 .button-container{
